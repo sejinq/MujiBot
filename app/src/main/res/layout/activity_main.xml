@@ -41,14 +41,207 @@
             android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="190dp"
+        android:layout_height="250dp"
+        android:layout_marginLeft="190dp" >
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="내부상태"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textView3" />
+
+            <LinearLayout
+            android:layout_width="140dp"
+            android:layout_height="25dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:text="JOY" />
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="25dp"
+                    android:text="value_joy"
+                    android:id="@+id/value_joy"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="140dp"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:text="INTEREST" />
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="25dp"
+                    android:text="value_interest"
+                    android:id="@+id/value_interest"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="140dp"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:text="BOREDOM" />
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="25dp"
+                    android:text="value_boredom"
+                    android:id="@+id/value_boredom"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="140dp"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:text="SURPRISE" />
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="25dp"
+                    android:text="value_surprise"
+                    android:id="@+id/value_surprise"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="140dp"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:text="CALM" />
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="25dp"
+                    android:text="value_calm"
+                    android:id="@+id/value_calm"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="140dp"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:text="SORROW" />
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="25dp"
+                    android:text="value_sorrow"
+                    android:id="@+id/value_sorrow"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="140dp"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:text="FEAR" />
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="25dp"
+                    android:text="value_fear"
+                    android:id="@+id/value_fear"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="140dp"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:text="DISGUST" />
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="25dp"
+                    android:text="value_disgust"
+                    android:id="@+id/value_disgust"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="140dp"
+                android:layout_height="25dp"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:text="ANGER" />
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="25dp"
+                    android:text="value_anger"
+                    android:id="@+id/value_anger"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+    </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
-        android:layout_toRightOf="@+id/physiologicalneed_sleep"
         android:id="@+id/physiologicalneed_hunger"
+        android:layout_below="@+id/textView2"
         android:layout_marginLeft="10dp"
+        android:layout_marginStart="62dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_marginTop="10dp">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,7 +255,86 @@
             android:text="배고픔"
             android:layout_below="@+id/physiologicalneed_imageview_hunger"
             android:layout_centerHorizontal="true"/>
+
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_show"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/physiologicalneed_sleep"
+        android:layout_toEndOf="@+id/physiologicalneed_sleep"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="80dp">
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true">
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="좋사진"
+                android:id="@+id/btn_picture_like"/>
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="싫사진"
+                android:id="@+id/btn_picture_dislike"/>
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="차분사진"
+                android:id="@+id/btn_picture_treatment"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_margintop="10dp">
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="행복표정"
+                android:id="@+id/btn_eed_happy"/>
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="슬픈표정"
+                android:id="@+id/btn_eed_sorrow"/>
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="화난표정"
+                android:id="@+id/btn_eed_anger"/>
+
+        </LinearLayout>
+    </LinearLayout>
 
 
 </RelativeLayout>
