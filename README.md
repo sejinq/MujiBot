@@ -20,21 +20,23 @@ MujiBot
 내부설계
 
 ###inner
-
-- - emotion : mujibot의 감정 상태를 저장
+- emotion : mujibot의 감정 상태를 저장
   - 모든 감정은 기본 값으로 50이 설정되어 있다
   - emotion flag는 다음과 같이 정의된다.
-
-        public static int feelJOY=0; //joy 감정발현
-        public static int feelINTEREST=1; //interest 감정발현
-        public static int feelBOREDOM=2; //boredom 감정발현
-        public static int feelSURPRISE=3; //surprise 감정발현
-        public static int feelCALM=4; //calm 감정발현
-        public static int feelSORROW=5; //sorrow 감정발현
-        public static int feelFEAR=6; //fear 감정발현
-        public static int feelDISGUST=7; //disgust 감정발현
-        public static int feelANGER=8; //anger 감정발현
-
+  
+```
+    public static int feelJOY=0; //joy 감정발현
+    public static int feelINTEREST=1; //interest 감정발현
+    public static int feelBOREDOM=2; //boredom 감정발현
+    public static int feelSURPRISE=3; //surprise 감정발현
+    public static int feelCALM=4; //calm 감정발현
+    public static int feelSORROW=5; //sorrow 감정발현
+    public static int feelFEAR=6; //fear 감정발현
+    public static int feelDISGUST=7; //disgust 감정발현
+    public static int feelANGER=8; //anger 감정발현
+    
+```
+<br> 
 - habituation: habituation effect 7초 
   - 하나의 자극이 7초동안 유지되면 다시 50의 기본값으로 돌아오려는 항상성을 가짐
   - thread 정의
