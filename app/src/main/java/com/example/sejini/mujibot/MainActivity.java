@@ -3,7 +3,10 @@ package com.example.sejini.mujibot;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,7 +17,7 @@ import com.example.sejini.mujibot.inner.habituation;
 import com.example.sejini.mujibot.synthetic_nervous_system.behaviorSystem;
 import com.example.sejini.mujibot.synthetic_nervous_system.perceptionSystem;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener{
     boolean is_PICTURE_LIKE = false;
     boolean is_PICTURE_DISLIKE = false;
     boolean is_PICTURE_TREATMENT = false;
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     static TextView sorrowText;
     static TextView surpriseText;
     habituation thread;
+    float initialX, initialY;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,9 +66,11 @@ public class MainActivity extends AppCompatActivity {
          sorrowText = (TextView)findViewById(R.id.value_sorrow);
          surpriseText = (TextView)findViewById(R.id.value_surprise);
         mujiBot = (ImageView)findViewById(R.id.mujibot);
+        mujiBot.setOnTouchListener(this);
         mujiBot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 //thread상태가 끝났는지 체크 > 자극이 있었는지 7초가 지났다
 //                if(timePet==7&&habituationState[6]==false){
@@ -75,20 +81,7 @@ public class MainActivity extends AppCompatActivity {
 //                    newStimulation = true;
 //                }
                 //7번 눌리면 background thread활성화
-                if(timePet<7){
-                    perception.petMujibot();
-                    timePet++;
-                    showInnerState();
-                }
-                else if(timePet>=7&&habituationState[6]==false) {
-                    //touch의 habituation thread상태를 true로
-                    newStimulation = false;
-                    habituationState[6] = true;
-                   //habituationstate 배열의 index를 넘겨줌
-                    thread = new habituation(handler, 6);
-                    thread.setDaemon(true);
-                    thread.start();
-                }
+
             }
         });
         Button PICTURE_LIKE = (Button)findViewById(R.id.btn_picture_like);
@@ -97,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         Button EEG_HAPPY = (Button)findViewById(R.id.btn_eeg_happy);
         Button EEG_SORROW = (Button)findViewById(R.id.btn_eeg_sorrow);
         Button EEG_ANGER = (Button)findViewById(R.id.btn_eeg_anger);
+
 
     }
     public static void showInnerState(){
@@ -115,4 +109,86 @@ public class MainActivity extends AppCompatActivity {
             showInnerState();
         }
     };
+
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        int action = MotionEventCompat.getActionMasked(motionEvent);
+         String DEBUG_TAG = "MOTION";
+
+        switch (action) {
+            case (MotionEvent.ACTION_DOWN):
+                initialX = motionEvent.getX();
+                initialY = motionEvent.getY();
+                Log.d(DEBUG_TAG, "Action was DOWN");
+                return true;
+           case (MotionEvent.ACTION_UP):
+                float finalX = motionEvent.getX();
+                float finalY = motionEvent.getY();
+                Log.d(DEBUG_TAG, "Action was UP");
+                if (initialX + 50 < finalX) {
+                    Log.d(DEBUG_TAG, "Left to Right swipe performed");
+                    motionPerception(true);
+                }
+
+                else if (initialX > finalX + 50) {
+                    Log.d(DEBUG_TAG, "Right to Left swipe performed");
+                    motionPerception(true);
+                }
+               else{
+                    motionPerception(false);
+                }
+                return true;
+            case (MotionEvent.ACTION_MOVE):
+                Log.d(DEBUG_TAG, "Action was MOVE");
+                return true;
+
+            case (MotionEvent.ACTION_CANCEL):
+                Log.d(DEBUG_TAG, "Action was CANCEL");
+                return true;
+            case (MotionEvent.ACTION_OUTSIDE):
+                Log.d(DEBUG_TAG, "Movement occurred outside bounds " +
+                        "of current screen element");
+                return true;
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    private void motionPerception(boolean state) {
+        String DEBUG_TAG = "MOTION";
+       if(state){
+           thread.interrupt();
+           Log.d(DEBUG_TAG, "swipe");
+           if (timeSwipe < 7) {
+               perception.hitMujibot();
+               timeSwipe++;
+               showInnerState();
+           } else if (timeSwipe >= 7 && habituationState[7] == false) {
+               //touch의 habituation thread상태를 true로
+               newStimulation = false;
+               habituationState[7] = true;
+               //habituationstate 배열의 index를 넘겨줌
+               thread = new habituation(handler, 7);
+               thread.setDaemon(true);
+               thread.start();
+           }
+       }
+        else {
+           if (timePet < 7) {
+               perception.petMujibot();
+               timePet++;
+               showInnerState();
+           } else if (timePet >= 7 && habituationState[6] == false) {
+               //touch의 habituation thread상태를 true로
+               newStimulation = false;
+               habituationState[6] = true;
+               //habituationstate 배열의 index를 넘겨줌
+               thread = new habituation(handler, 6);
+               thread.setDaemon(true);
+               thread.start();
+               Log.d(DEBUG_TAG, "touch");
+           }
+       }
+    }
 }
