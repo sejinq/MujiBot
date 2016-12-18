@@ -74,7 +74,8 @@ synthetic_nervous_system
         
 
 - motivationSystem :  값에 따른 감정 상태 판단
-  - drive에서 gain값을 받아온다
+  - 6 drive gain값을 받아온다
+  - mainActivity
   - gain값에 따른 9가지 종류의 감정 중 하나의 감정 선택
   - 판단한 감정을 behavior system에 전달
     
