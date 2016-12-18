@@ -74,10 +74,13 @@ synthetic_nervous_system
         
 
 - motivationSystem :  값에 따른 감정 상태 판단
-  - 6 drive gain값을 받아온다
-  - mainActivity
-  - gain값에 따른 9가지 종류의 감정 중 하나의 감정 선택
-  - 판단한 감정을 behavior system에 전달
+  - mainActivity에서 6가지 상황에 따른 버튼 입력을 전달
+  - 상황 버튼이 ON되면 perceptioSystem에서 해당 상황의 함수를 불러 매 초 실행시킴
+  - Emotion에서 gain 70이 넘는 감정들 중 하나를 랜덤으로 선택
+  - 선택된 감정을 behaviorSystem에 전달
+
+  - 7초 이내에 버튼이 OFF되면 함수 호출을 중단
+  - 7초가 지나도 함수호출을 중단하고 Habituation effect를 실행
     
 
 - behaviorSystem : 감정상태에 따른 행동 선택
