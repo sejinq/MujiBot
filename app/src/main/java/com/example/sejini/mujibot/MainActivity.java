@@ -1,6 +1,8 @@
 package com.example.sejini.mujibot;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
          joyText = (TextView)findViewById(R.id.value_joy);
          interestText = (TextView)findViewById(R.id.value_interest);
          angerText = (TextView)findViewById(R.id.value_anger);
@@ -56,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
                     timePet++;
                     showInnerState();
                 }
-                else{
-                    timePet=0;
-                    habituation thread = new habituation();
+                else {
+                    timePet = 0;
+                    habituation thread = new habituation(handler);
                     thread.setDaemon(true);
                     thread.start();
                 }
@@ -83,4 +86,9 @@ public class MainActivity extends AppCompatActivity {
         sorrowText.setText(String.valueOf(Emotion.SORROW));
         surpriseText.setText(String.valueOf(Emotion.SURPRISE));
     }
+    final Handler handler = new Handler(){
+        public void handleMessage(Message msg){
+            showInnerState();
+        }
+    };
 }

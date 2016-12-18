@@ -101,15 +101,15 @@ public class perceptionSystem {
     }
 
     public void petMujibot(){
-        Emotion.JOY += 0.2;
-        Emotion.INTEREST += 0.5;
-        Emotion.BOREDOM -= 0.5;
-        Emotion.SURPRISE += 0.2;
-        Emotion.CALM -= 0.1;
-        Emotion.SORROW -= 0.2;
-        Emotion.FEAR += 0.1;
-        Emotion.DISGUST -= 0.1;
-        Emotion.ANGER -= 0.1;
+        Emotion.JOY += 2;
+        Emotion.INTEREST += 5;
+        Emotion.BOREDOM -= 5;
+        Emotion.SURPRISE += 2;
+        Emotion.CALM -= 1;
+        Emotion.SORROW -= 2;
+        Emotion.FEAR += 1;
+        Emotion.DISGUST -= 1;
+        Emotion.ANGER -= 1;
 
     }
 

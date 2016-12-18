@@ -11,55 +11,35 @@ import java.util.logging.LogRecord;
  * Created by sejini on 2016-12-18.
  */
 
-public class habituation extends Thread  {
-    final Handler handler = new Handler()
-
-    {
-
-        @Override
-        public void publish(LogRecord logRecord) {
-
-        }
-
-        @Override
-        public void flush() {
-
-        }
-
-        @Override
-        public void close() throws SecurityException {
-
-        }
-
-        public void handleMessage(Message msg)
-
-        {
-
-            // 원래 하고싶었던 일들 (UI변경작업 등...)
-
-        }
-
-    };
+public class habituation extends Thread{
+    android.os.Handler handler;
+    public habituation(android.os.Handler handler){
+        this.handler = handler;
+    }
     @Override
     public void run() {
-        while (true) {
+        while(true){
             if(!habituationEffect()){
                 break;
             }
-            try {
-                Thread.sleep(1000);
-                Message msg = handler.obtainMessage();
-                handler.sendMessage(msg);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            else{
+                // 메인에서 생성된 Handler 객체의 sendEmpryMessage 를 통해 Message 전달
+                handler.sendEmptyMessage(0);
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        }
-    }
+        } // end while
+    } // end run()
+
 
     public boolean habituationEffect() {
         boolean newStimulation = false;
         if (Emotion.JOY > 50) {
-            if (Emotion.JOY < 55) Emotion.JOY = 50;
+            if (Emotion.JOY < 55) {Emotion.JOY = 50;}
             else {
                 Emotion.JOY -= 4;
             }
@@ -69,7 +49,7 @@ public class habituation extends Thread  {
             newStimulation = true;
         }
         if (Emotion.ANGER > 50) {
-            if (Emotion.ANGER < 55) Emotion.ANGER = 50;
+            if (Emotion.ANGER < 55) {Emotion.ANGER = 50;}
             else {
                 Emotion.ANGER -= 4;
             }
@@ -79,7 +59,7 @@ public class habituation extends Thread  {
             newStimulation = true;
         }
         if (Emotion.BOREDOM > 50) {
-            if (Emotion.BOREDOM < 55) Emotion.BOREDOM = 50;
+            if (Emotion.BOREDOM < 55){ Emotion.BOREDOM = 50;}
             else {
                 Emotion.BOREDOM -= 4;
             }
@@ -89,7 +69,7 @@ public class habituation extends Thread  {
             newStimulation = true;
         }
         if (Emotion.CALM > 50) {
-            if (Emotion.CALM < 55) Emotion.CALM = 50;
+            if (Emotion.CALM < 55) {Emotion.CALM = 50;}
             else {
                 Emotion.CALM -= 4;
             }
@@ -99,7 +79,7 @@ public class habituation extends Thread  {
             newStimulation = true;
         }
         if (Emotion.DISGUST > 50) {
-            if (Emotion.DISGUST < 55) Emotion.DISGUST = 50;
+            if (Emotion.DISGUST < 55) {Emotion.DISGUST = 50;}
             else {
                 Emotion.DISGUST -= 4;
             }
@@ -109,7 +89,7 @@ public class habituation extends Thread  {
             newStimulation = true;
         }
         if (Emotion.FEAR > 50) {
-            if (Emotion.FEAR < 55) Emotion.FEAR = 50;
+            if (Emotion.FEAR < 55){ Emotion.FEAR = 50;}
             else {
                 Emotion.FEAR -= 4;
             }
@@ -119,7 +99,7 @@ public class habituation extends Thread  {
             newStimulation = true;
         }
         if (Emotion.SORROW > 50) {
-            if (Emotion.SORROW < 55) Emotion.SORROW = 50;
+            if (Emotion.SORROW < 55) {Emotion.SORROW = 50;}
             else {
                 Emotion.SORROW -= 4;
             }
@@ -129,7 +109,7 @@ public class habituation extends Thread  {
             newStimulation = true;
         }
         if (Emotion.SURPRISE > 50) {
-            if (Emotion.SURPRISE < 55) Emotion.SURPRISE = 50;
+            if (Emotion.SURPRISE < 55) {Emotion.SURPRISE = 50;}
             else {
                 Emotion.SURPRISE -= 4;
             }
@@ -139,7 +119,7 @@ public class habituation extends Thread  {
             newStimulation = true;
         }
         if (Emotion.INTEREST > 50) {
-            if (Emotion.INTEREST < 55) Emotion.INTEREST = 50;
+            if (Emotion.INTEREST < 55) {Emotion.INTEREST = 50;}
             else {
                 Emotion.INTEREST -= 4;
             }
@@ -148,7 +128,6 @@ public class habituation extends Thread  {
             Emotion.INTEREST += 4;
             newStimulation = true;
         }
-        MainActivity.showInnerState();
         return newStimulation;
     }
 }
