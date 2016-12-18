@@ -21,10 +21,20 @@ public class MainActivity extends AppCompatActivity {
     boolean is_EEG_HAPPY = false;
     boolean is_EEG_SORROW = false;
     boolean is_EEG_ANGER = false;
+
+    /*새로운 자극인지 체크하는 변수 nowStimulation에 현재 자극(버튼이름 또는 touchmotion) nowStimulation에 이름(버튼 id로 하자!) 저장
+    이벤트 시 이름이랑 비교해서 새로운 자극이면 newStimulation을 true로 바꿔줌
+    mujibo onClick 메서드 참고*/
+    String nowStimulation="";
+    public static boolean newStimulation = false;
+
+    //0-5 : 버튼 다희가 정해서 사용하면 됨. 6/7 = touch/swipe
+    public static boolean[] habituationState = new boolean[8];
+
     public static ImageView mujiBot;
     perceptionSystem perception = new perceptionSystem();
-    int timePet=0;
-    int timeSwipe=0;
+    public static int timePet=0;
+    public static int timeSwipe=0;
     static TextView joyText;
     static TextView interestText;
     static TextView angerText;
@@ -34,12 +44,14 @@ public class MainActivity extends AppCompatActivity {
     static TextView fearText;
     static TextView sorrowText;
     static TextView surpriseText;
-
+    habituation thread;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        for(int i=0;i<8;i++){
+            habituationState[i] = false;
+        }
          joyText = (TextView)findViewById(R.id.value_joy);
          interestText = (TextView)findViewById(R.id.value_interest);
          angerText = (TextView)findViewById(R.id.value_anger);
@@ -53,15 +65,27 @@ public class MainActivity extends AppCompatActivity {
         mujiBot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //motivation에서 감정 판단되면
+
+                //thread상태가 끝났는지 체크 > 자극이 있었는지 7초가 지났다
+//                if(timePet==7&&habituationState[6]==false){
+//                    timePet = 0;
+//                }
+//                if(!nowStimulation.equals("touch")){
+//                    nowStimulation = "touch";
+//                    newStimulation = true;
+//                }
+                //7번 눌리면 background thread활성화
                 if(timePet<7){
                     perception.petMujibot();
                     timePet++;
                     showInnerState();
                 }
-                else {
-                    timePet = 0;
-                    habituation thread = new habituation(handler);
+                else if(timePet>=7&&habituationState[6]==false) {
+                    //touch의 habituation thread상태를 true로
+                    newStimulation = false;
+                    habituationState[6] = true;
+                   //habituationstate 배열의 index를 넘겨줌
+                    thread = new habituation(handler, 6);
                     thread.setDaemon(true);
                     thread.start();
                 }

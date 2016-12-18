@@ -13,13 +13,22 @@ import java.util.logging.LogRecord;
 
 public class habituation extends Thread{
     android.os.Handler handler;
-    public habituation(android.os.Handler handler){
+    int state=0;
+    public habituation(android.os.Handler handler, int state){
         this.handler = handler;
+        this.state = state;
     }
     @Override
     public void run() {
         while(true){
             if(!habituationEffect()){
+                if(state == 6){
+                    MainActivity.timePet=0;
+                }
+                else if(state==7){
+                    MainActivity.timeSwipe=0;
+                }
+                MainActivity.habituationState[state] = false;
                 break;
             }
             else{
@@ -37,7 +46,11 @@ public class habituation extends Thread{
 
 
     public boolean habituationEffect() {
-        boolean newStimulation = false;
+        boolean newStimulation = MainActivity.newStimulation;
+        if(newStimulation){
+            MainActivity.newStimulation = false;
+            return false;
+        }
         if (Emotion.JOY > 50) {
             if (Emotion.JOY < 55) {Emotion.JOY = 50;}
             else {
@@ -128,6 +141,7 @@ public class habituation extends Thread{
             Emotion.INTEREST += 4;
             newStimulation = true;
         }
+
         return newStimulation;
     }
 }
