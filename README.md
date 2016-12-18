@@ -94,12 +94,14 @@ MujiBot
 
 - motivationSystem :  값에 따른 감정 상태 판단
   - mainActivity에서 6가지 상황에 따른 버튼 입력을 전달
-  - 상황 버튼이 ON되면 perceptioSystem에서 해당 상황의 함수를 불러 매 초 실행시킴
-  - Emotion에서 gain 70이 넘는 감정들 중 하나를 랜덤으로 선택
-  - 선택된 감정을 behaviorSystem에 전달
-
-  - 7초 이내에 버튼이 OFF되면 함수 호출을 중단
-  - 7초가 지나도 함수호출을 중단하고 Habituation effect를 실행
+  - thread 정의
+    - 버튼 값이 ON인 동안 1초에 한번씩 perceptionSystem의 해당 함수를 불러와 감정별 gain값 계산
+    - gain값이 70이 넘는 감정들 랜덤 선택
+    - 선택된 감정 behaviorSystem에 전달
+    
+    - 7초 이내에 버튼이 OFF되면 스레드 종료
+    - 혹은 7초가 지나면 종료
+ - 선택된 감정 behaviorSystem에 전달
     
 
 - behaviorSystem : 감정상태에 따른 행동 선택
