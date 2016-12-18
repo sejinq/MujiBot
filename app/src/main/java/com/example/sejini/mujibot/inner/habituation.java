@@ -37,7 +37,8 @@ public class habituation extends Thread{
 
                 try {
                     Thread.sleep(1000);
-                } catch (InterruptedException e) {
+                }
+                   catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -46,6 +47,7 @@ public class habituation extends Thread{
 
 
     public boolean habituationEffect() {
+
         boolean newStimulation = MainActivity.newStimulation;
         if(newStimulation){
             MainActivity.newStimulation = false;
