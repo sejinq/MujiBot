@@ -316,19 +316,19 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:text="행복표정"
-                android:id="@+id/btn_eed_happy"/>
+                android:id="@+id/btn_eeg_happy"/>
 
             <Button
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:text="슬픈표정"
-                android:id="@+id/btn_eed_sorrow"/>
+                android:id="@+id/btn_eeg_sorrow"/>
 
             <Button
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:text="화난표정"
-                android:id="@+id/btn_eed_anger"/>
+                android:id="@+id/btn_eeg_anger"/>
 
         </LinearLayout>
     </LinearLayout>
