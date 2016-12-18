@@ -5,17 +5,17 @@ package com.example.sejini.mujibot.inner;
  */
 
 public class Emotion {
-    private int JOY=50;
-    private int INTEREST=50;
-    private int BOREDOM=50;
-    private int SURPRISE=50;
-    private int CALM=50;
-    private int SORROW=50;
-    private int FEAR=50;
-    private int DISGUST=50;
-    private int ANGER=50;
+    public static int JOY=50;
+    public static int INTEREST=50;
+    public static int BOREDOM=50;
+    public static int SURPRISE=50;
+    public static int CALM=50;
+    public static int SORROW=50;
+    public static int FEAR=50;
+    public static int DISGUST=50;
+    public static int ANGER=50;
 
-    public void init(){
+    public static void init(){
         JOY=50;
         INTEREST=50;
         BOREDOM=50;
@@ -27,75 +27,14 @@ public class Emotion {
         ANGER=50;
     }
 
-    public int getJOY() {
-        return JOY;
-    }
+    public static int feelJOY=0;
+    public static int feelINTEREST=1;
+    public static int feelBOREDOM=2;
+    public static int feelSURPRISE=3;
+    public static int feelCALM=4;
+    public static int feelSORROW=5;
+    public static int feelFEAR=6;
+    public static int feelDISGUST=7;
+    public static int feelANGER=8;
 
-    public void setJOY(int JOY) {
-        this.JOY = JOY;
-    }
-
-    public int getINTEREST() {
-        return INTEREST;
-    }
-
-    public void setINTEREST(int INTEREST) {
-        this.INTEREST = INTEREST;
-    }
-
-    public int getBOREDOM() {
-        return BOREDOM;
-    }
-
-    public void setBOREDOM(int BOREDOM) {
-        this.BOREDOM = BOREDOM;
-    }
-
-    public int getSURPRISE() {
-        return SURPRISE;
-    }
-
-    public void setSURPRISE(int SURPRISE) {
-        this.SURPRISE = SURPRISE;
-    }
-
-    public int getCALM() {
-        return CALM;
-    }
-
-    public void setCALM(int CALM) {
-        this.CALM = CALM;
-    }
-
-    public int getSORROW() {
-        return SORROW;
-    }
-
-    public void setSORROW(int SORROW) {
-        this.SORROW = SORROW;
-    }
-
-    public int getFEAR() {
-        return FEAR;
-    }
-
-    public void setFEAR(int FEAR) {
-        this.FEAR = FEAR;
-    }
-
-    public int getDISGUST() {
-        return DISGUST;
-    }
-
-    public void setDISGUST(int DISGUST) {
-        this.DISGUST = DISGUST;
-    }
-
-    public int getANGER() {
-        return ANGER;
-    }
-
-    public void setANGER(int ANGER) {
-        this.ANGER = ANGER;
-    }
 }
