@@ -16,15 +16,15 @@ public class Emotion {
     public static int ANGER=50;
 
     public static void init(){
-        JOY=50;
+        JOY=50;//
         INTEREST=50;
-        BOREDOM=50;
-        SURPRISE=50;
-        CALM=50;
-        SORROW=50;
-        FEAR=50;
-        DISGUST=50;
-        ANGER=50;
+        BOREDOM=50;//
+        SURPRISE=50;//
+        CALM=50;//
+        SORROW=50;//
+        FEAR=50;//
+        DISGUST=50;//
+        ANGER=50;//
     }
 
     public static int feelJOY=0;
