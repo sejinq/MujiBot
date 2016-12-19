@@ -157,9 +157,28 @@ public class motivationSystem extends Thread {
             n++;
         }
         if(n >= 1){
-            Random random = new Random();
-            int randomValue = random.nextInt(n);
-            behaviorSystem.checkEmotion(s_emotion[randomValue]);
+            int max=0, num=0, index=0; int[] temp = new int[n+1];
+            for(int i=0;i<n;i++){
+                if(max < s_emotion[i]){
+                    max = s_emotion[i];
+                    index = i;
+                }
+            }
+            for(int i=0;i<n;i++){
+                if(temp[0] < s_emotion[i] + 10){
+                    temp[num++] = s_emotion[i];
+                }
+            }
+            temp[num] = max;
+            if(num==0){
+                behaviorSystem.checkEmotion(temp[num]);
+            }
+            else{
+                Random random = new Random();
+                int randomValue = random.nextInt(num+1);
+                behaviorSystem.checkEmotion(temp[randomValue]);
+            }
+
         }
         else{
             behaviorSystem.checkEmotion(Emotion.feelNOTHING);
