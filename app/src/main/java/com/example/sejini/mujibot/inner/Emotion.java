@@ -36,5 +36,6 @@ public class Emotion {
     public static int feelFEAR=6;
     public static int feelDISGUST=7;
     public static int feelANGER=8;
+    public static int feelNOTHING=9;
 
 }

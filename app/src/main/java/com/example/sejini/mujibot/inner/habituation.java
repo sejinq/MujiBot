@@ -3,6 +3,7 @@ package com.example.sejini.mujibot.inner;
 import android.os.Message;
 
 import com.example.sejini.mujibot.MainActivity;
+import com.example.sejini.mujibot.synthetic_nervous_system.motivationSystem;
 
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
@@ -35,7 +36,11 @@ public class habituation extends Thread{
             else{
                 // 메인에서 생성된 Handler 객체의 sendEmpryMessage 를 통해 Message 전달
                 handler.sendEmptyMessage(0);
-
+                handler.post(new Runnable() {
+                    public void run() {
+                        motivationSystem.SelectEmotion();
+                    }
+                });
                 try {
                     Thread.sleep(1000);
                 }

@@ -43,7 +43,7 @@ public class behaviorSystem {
             SURPRISEBehavior(randomValue);
         }
         else{
-            return;
+            MainActivity.mujiBot.setImageResource(R.drawable.normal1);
         }
     }
 

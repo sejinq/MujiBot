@@ -43,43 +43,50 @@ public class motivationSystem extends Thread {
     public void run() {
         while (true) {
             if (count >= 7) {
+                MainActivity.newStimulation = false;
+                thread = new habituation(handler, state);
+                thread.setDaemon(true);
+                thread.start();
                 break;
+            }
+            else{
+                MainActivity.newStimulation = true;
             }
             if (state == 0) {
                 if (MainActivity.is_PICTURE_LIKE) {
                     perceptionSystem.showPictureLike();
                 } else {
-                    //break;
+                    break;
                 }
             } else if (state == 1) {
                 if (MainActivity.is_PICTURE_DISLIKE) {
                     perceptionSystem.showPictureDislike();
                 } else {
-                    //break;
+                    break;
                 }
             } else if (state == 2) {
                 if (MainActivity.is_PICTURE_TREATMENT) {
                     perceptionSystem.showPictureTreatment();
                 } else {
-                    // break;
+                    break;
                 }
             } else if (state == 3) {
                 if (MainActivity.is_EEG_HAPPY) {
                     perceptionSystem.checkEEGhappy();
                 } else {
-                    // break;
+                    break;
                 }
             } else if (state == 4) {
                 if (MainActivity.is_EEG_SORROW) {
                     perceptionSystem.checkEEGsorrow();
                 } else {
-                    //break;
+                    break;
                 }
             } else if (state == 5) {
                 if (MainActivity.is_EEG_ANGER) {
                     perceptionSystem.checkEEGanger();
                 } else {
-                    //break;
+                    break;
                 }
             }
             count++;
@@ -107,7 +114,7 @@ public class motivationSystem extends Thread {
 //        } // end while
     } // end run()
 
-    public void SelectEmotion(){
+    public static void SelectEmotion(){
         //List
         int [] s_emotion;
         s_emotion = new int [9];
@@ -155,7 +162,7 @@ public class motivationSystem extends Thread {
             behaviorSystem.checkEmotion(s_emotion[randomValue]);
         }
         else{
-
+            behaviorSystem.checkEmotion(Emotion.feelNOTHING);
         }
 
 

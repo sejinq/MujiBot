@@ -302,6 +302,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                perception.hitMujibot();
                timeSwipe++;
                newStimulation = true;
+                motivationSystem.SelectEmotion();
                showInnerState();
            } else if (timeSwipe >= 7 && habituationState[7] == false) {
                //touch의 habituation thread상태를 true로
@@ -318,7 +319,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                perception.petMujibot();
                timePet++;
                newStimulation = true;
+               motivationSystem.SelectEmotion();
                showInnerState();
+
            } else if (timePet >= 7 && habituationState[6] == false) {
                //touch의 habituation thread상태를 true로
                newStimulation = false;
