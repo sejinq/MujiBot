@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sejini.mujibot.inner.Emotion;
+import com.example.sejini.mujibot.inner.PhysiologicalNeed;
 import com.example.sejini.mujibot.inner.habituation;
 import com.example.sejini.mujibot.synthetic_nervous_system.motivationSystem;
 import com.example.sejini.mujibot.synthetic_nervous_system.perceptionSystem;
@@ -53,15 +54,18 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     static TextView sorrowText;
     static TextView surpriseText;
 
-    motivationSystem thread2;
     habituation thread;
+    motivationSystem thread2;
+    PhysiologicalNeed thread3;
     float initialX, initialY;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //physiological.startTimer();
+        thread3 = new PhysiologicalNeed(handler);
+        thread3.setDaemon(true);
+        thread3.start();
 
         mujiBot = (ImageView) findViewById(R.id.mujibot);
         mujiBot_hungry = (ImageView) findViewById(R.id.physiologicalneed_imageview_sleep);

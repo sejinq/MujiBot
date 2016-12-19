@@ -30,14 +30,11 @@ public class motivationSystem extends Thread {
     int count = 0;
     android.os.Handler handler;
     int state=0;
-    //boolean OnOff = false;
-
-    //SelectEmotion();
 
     public motivationSystem(android.os.Handler handler, int state){
         this.handler = handler;
         this.state = state;
-        //this.OnOff = m_OnOff;
+
     }
 
     public void run() {
