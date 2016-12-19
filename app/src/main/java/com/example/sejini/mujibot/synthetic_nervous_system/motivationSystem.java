@@ -1,12 +1,13 @@
 package com.example.sejini.mujibot.synthetic_nervous_system;
 
+import android.os.SystemClock;
+
 import com.example.sejini.mujibot.MainActivity;
 import com.example.sejini.mujibot.inner.Emotion;
 import com.example.sejini.mujibot.inner.habituation;
 
 import java.util.Random;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by dahee on 2016-12-17.
@@ -29,127 +30,137 @@ public class motivationSystem extends Thread {
     int count = 0;
     android.os.Handler handler;
     int state=0;
-    boolean OnOff = false;
-    boolean ishabituation = false;
+    //boolean OnOff = false;
 
     //SelectEmotion();
 
-    public motivationSystem(android.os.Handler handler, int state, boolean m_OnOff){
+    public motivationSystem(android.os.Handler handler, int state){
         this.handler = handler;
         this.state = state;
-        this.OnOff = m_OnOff;
+        //this.OnOff = m_OnOff;
     }
 
     public void run() {
-        while(true){  //count
-            if(!ishabituation){
-                if(!OnOff){
-                    if(state == 0){
-                        perceptionSystem.showPictureLike();
-                    }
-                    else if(state==1){
-                        perceptionSystem.showPictureDislike();
-                    }
-                    else if(state ==2){
-                        perceptionSystem.showPictureTreatment();
-                    }
-                    else if(state==3){
-                        perceptionSystem.checkEEGhappy();
-                    }
-                    else if(state==4){
-                        perceptionSystem.checkEEGsorrow();
-                    }
-                    else if(state==5){
-                        perceptionSystem.checkEEGanger();
-                    }
-                }
-                else {
-                    //nothing 노 반응/??3
-                }
-
-                count ++;
-                MainActivity.showInnerState();
-                //MainActivity.habituationState[state] = false;
+        while (true) {
+            if (count >= 7) {
                 break;
             }
-            else{
-                // 메인에서 생성된 Handler 객체의 sendEmpryMessage 를 통해 Message 전달
-                handler.sendEmptyMessage(0);
-
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            if (state == 0) {
+                if (MainActivity.is_PICTURE_LIKE) {
+                    perceptionSystem.showPictureLike();
+                } else {
+                    //break;
+                }
+            } else if (state == 1) {
+                if (MainActivity.is_PICTURE_DISLIKE) {
+                    perceptionSystem.showPictureDislike();
+                } else {
+                    //break;
+                }
+            } else if (state == 2) {
+                if (MainActivity.is_PICTURE_TREATMENT) {
+                    perceptionSystem.showPictureTreatment();
+                } else {
+                    // break;
+                }
+            } else if (state == 3) {
+                if (MainActivity.is_EEG_HAPPY) {
+                    perceptionSystem.checkEEGhappy();
+                } else {
+                    // break;
+                }
+            } else if (state == 4) {
+                if (MainActivity.is_EEG_SORROW) {
+                    perceptionSystem.checkEEGsorrow();
+                } else {
+                    //break;
+                }
+            } else if (state == 5) {
+                if (MainActivity.is_EEG_ANGER) {
+                    perceptionSystem.checkEEGanger();
+                } else {
+                    //break;
                 }
             }
-        } // end while
+            count++;
+
+            handler.sendEmptyMessage(0);
+
+            handler.post(new Runnable() {
+                public void run() {
+                    SelectEmotion();
+                }
+            });
+            SystemClock.sleep(1000);
+
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+//        while(true){  //count
+//
+//
+//        } // end while
     } // end run()
 
     public void SelectEmotion(){
+        //List
         int [] s_emotion;
         s_emotion = new int [9];
 
         int n =0;
-        if(Emotion.JOY >= 70){
-            s_emotion[n] = 0;
+        if(Emotion.JOY >= 70){ //리스트
+            s_emotion[n] = Emotion.feelJOY;
             n++;
         }
         else if(Emotion.INTEREST >= 70){
-            s_emotion[n] = 1;
+            s_emotion[n] = Emotion.feelINTEREST;
             n++;
         }
         else if(Emotion.BOREDOM >= 70){
-            s_emotion[n] = 2;
+            s_emotion[n] =  Emotion.feelBOREDOM;
             n++;
         }
         else if(Emotion.SURPRISE >= 70){
-            s_emotion[n] = 3;
+            s_emotion[n] =  Emotion.feelSURPRISE;
             n++;
         }
         else if(Emotion.CALM >= 70){
-            s_emotion[n] = 4;
+            s_emotion[n] = Emotion.feelCALM;
             n++;
         }
         else if(Emotion.SORROW >= 70){
-            s_emotion[n] = 5;
+            s_emotion[n] =  Emotion.feelSORROW;
             n++;
         }
         else if(Emotion.FEAR >= 70){
-            s_emotion[n] = 6;
+            s_emotion[n] = Emotion.feelFEAR;
             n++;
         }
         else if (Emotion.DISGUST >= 70){
-            s_emotion[n] = 7;
+            s_emotion[n] = Emotion.feelDISGUST;
             n++;
         }
         else if(Emotion.ANGER >= 70){
-            s_emotion[n] = 8;
+            s_emotion[n] = Emotion.feelANGER;
             n++;
         }
-        Random random = new Random();
-        int randomValue = random.nextInt(n-1);
-        behaviorSystem.checkEmotion(s_emotion[randomValue]);
+        if(n >= 1){
+            Random random = new Random();
+            int randomValue = random.nextInt(n);
+            behaviorSystem.checkEmotion(s_emotion[randomValue]);
+        }
+        else{
+
+        }
+
 
     }
 
-
-    public void StartTimer(int m_state){  //7초 확인 후 habituation실행
-        final int state = m_state;
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                ishabituation = true;
-                thread = new habituation(handler, state);
-                thread.setDaemon(true);
-                thread.start();
-            }
-        }, 7000);    //7초 뒤에 habituation 실행행
-    }
-    public void StopTimer(){ //버튼 OFF들어오면 while문 실행 노노 아!!!
-        timer.cancel();
-        //ishabituation = false;
-    }
 
 }
 

@@ -20,14 +20,18 @@ import java.util.TimerTask;
     //3시간  10800000
     //4시간  14400000
 
-public class PhysiologicalNeed extends Thread{
+public class PhysiologicalNeed extends Thread{  //다른 방법으로 강제 종료
     Timer timer_hungry;
     Timer timer_sleepy;
     Timer start_timer_hungry;
     Timer start_timer_sleepy;
     int count_hungry = 0;
     int count_sleepy = 0;
-    Handler handler = new Handler();
+    Handler handler;
+
+    public PhysiologicalNeed(Handler handler){
+        this.handler = handler;
+    }
 
     public void startTimer() //타이머가 시작된다.
     {
@@ -77,7 +81,7 @@ public class PhysiologicalNeed extends Thread{
         Runnable updater = new Runnable() {
             public void run() {
                 MainActivity.mujiBot_sleepy.setImageResource(R.drawable.hunger);
-                startHungryTimer(); //배고픔이 발현되고 배고픔픔 속시간 관리 타이머 시작
+                //startHungryTimer(); //배고픔이 발현되고 배고픔픔 속시간 관리 타이머 시작
             }
         };
         handler.post(updater);
@@ -112,7 +116,6 @@ public class PhysiologicalNeed extends Thread{
         Runnable updater = new Runnable() {
             public void run() {
                 MainActivity.mujiBot_hungry.setImageResource(R.drawable.okay);
-                //stopTimer();
             }
         };
         handler.post(updater);
@@ -122,12 +125,9 @@ public class PhysiologicalNeed extends Thread{
         Runnable updater = new Runnable() {
             public void run() {
                 MainActivity.mujiBot_hungry.setImageResource(R.drawable.okay);
-                //stopTimer();
-
             }
         };
         handler.post(updater);
     }
-
 
 }
