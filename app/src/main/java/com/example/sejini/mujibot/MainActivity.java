@@ -87,22 +87,23 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
          sorrowText = (TextView)findViewById(R.id.value_sorrow);
          surpriseText = (TextView)findViewById(R.id.value_surprise);
          mujiBot = (ImageView)findViewById(R.id.mujibot);
-         mujiBot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //thread상태가 끝났는지 체크 > 자극이 있었는지 7초가 지났다
-//                if(timePet==7&&habituationState[6]==false){
-//                    timePet = 0;
-//                }
-//                if(!nowStimulation.equals("touch")){
-//                    nowStimulation = "touch";
-//                    newStimulation = true;
-//                }
-                //7번 눌리면 background thread활성화
-
-            }
-        });
+        mujiBot.setOnTouchListener(this);
+//         mujiBot.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                //thread상태가 끝났는지 체크 > 자극이 있었는지 7초가 지났다
+////                if(timePet==7&&habituationState[6]==false){
+////                    timePet = 0;
+////                }
+////                if(!nowStimulation.equals("touch")){
+////                    nowStimulation = "touch";
+////                    newStimulation = true;
+////                }
+//                //7번 눌리면 background thread활성화
+//
+//            }
+//        });
 
         PICTURE_LIKE.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
