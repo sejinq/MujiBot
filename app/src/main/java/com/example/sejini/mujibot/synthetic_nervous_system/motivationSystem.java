@@ -4,6 +4,7 @@ import android.os.SystemClock;
 
 import com.example.sejini.mujibot.MainActivity;
 import com.example.sejini.mujibot.inner.Emotion;
+import com.example.sejini.mujibot.inner.PhysiologicalNeed;
 import com.example.sejini.mujibot.inner.habituation;
 
 import java.util.Random;
@@ -167,24 +168,24 @@ public class motivationSystem extends Thread {
                 }
             }
             temp[num] = max;
-            if(num==0){
-                behaviorSystem.checkEmotion(temp[num]);
+            if(PhysiologicalNeed.isPhysiologic){
+
             }
             else{
-                Random random = new Random();
-                int randomValue = random.nextInt(num+1);
-                behaviorSystem.checkEmotion(temp[randomValue]);
+                if(num==0){
+                    behaviorSystem.checkEmotion(temp[num]);
+                }
+                else{
+                    Random random = new Random();
+                    int randomValue = random.nextInt(num+1);
+                    behaviorSystem.checkEmotion(temp[randomValue]);
+                }
             }
-
         }
         else{
             behaviorSystem.checkEmotion(Emotion.feelNOTHING);
         }
-
-
     }
-
-
 }
 
 

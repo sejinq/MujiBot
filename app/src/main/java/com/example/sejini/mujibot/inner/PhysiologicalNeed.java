@@ -14,18 +14,19 @@ import java.util.TimerTask;
  */
 
 //배고픔 4시간마다
-//졸리움 3시간마다
+//졸림 3시간마다
 //1초 1000 10초 10000
     //60초 1분 60000
     //60분 1시간 360000
     //3시간  10800000
     //4시간  14400000
 
-public class PhysiologicalNeed extends Thread{  //다른 방법으로 강제 종료
+public class PhysiologicalNeed extends Thread{
     Handler handler;
     int count = 0;
     Timer timer_sleepy;
     Timer timer_hungry;
+    public static boolean isPhysiologic = false;
 
     public PhysiologicalNeed(Handler handler){
         this.handler = handler;
@@ -34,11 +35,12 @@ public class PhysiologicalNeed extends Thread{  //다른 방법으로 강제 종
     public void run(){
         while(true){
 
-            if(count %2 == 1){
+            if(count %2 == 1){  //졸림 발현
                 handler.post(new Runnable() {
                     public void run() {
                         startSleepyTimer();
                         MainActivity.mujiBot_sleepy.setImageResource(R.drawable.sleepy2);
+                        isPhysiologic = true;
                     }
                 });
                 SystemClock.sleep(10000);
@@ -46,9 +48,10 @@ public class PhysiologicalNeed extends Thread{  //다른 방법으로 강제 종
             }
             else if(count %2 == 0){
                 handler.post(new Runnable() {
-                    public void run() {
+                    public void run() {   //배고픔 발현
                         startHungryTimer();
                         MainActivity.mujiBot_hungry.setImageResource(R.drawable.hungry2);
+                        isPhysiologic = true;
                     }
                 });
                 SystemClock.sleep(10000);
@@ -68,7 +71,7 @@ public class PhysiologicalNeed extends Thread{  //다른 방법으로 강제 종
         }
     }
 
-    private void startSleepyTimer(){
+    private void startSleepyTimer(){  //졸림 발현 지속 시간
         timer_sleepy = new Timer();
         timer_sleepy.schedule(new TimerTask()
         {
@@ -78,14 +81,15 @@ public class PhysiologicalNeed extends Thread{  //다른 방법으로 강제 종
                 handler.post(new Runnable() {
                     public void run() {
                         MainActivity.mujiBot_sleepy.setImageResource(R.drawable.sleepy_state);
+                        isPhysiologic = false;
                     }
                 });
                 SystemClock.sleep(1000);
             }
-        }, 3000);  //5초 뒤에 졸리움 사라짐
+        }, 3000);   //3초 뒤
      }
 
-    private void startHungryTimer(){
+    private void startHungryTimer(){   //배고픔 발현 지속 시간
         timer_hungry = new Timer();
         timer_hungry.schedule(new TimerTask()
         {
@@ -95,11 +99,12 @@ public class PhysiologicalNeed extends Thread{  //다른 방법으로 강제 종
                 handler.post(new Runnable() {
                     public void run() {
                         MainActivity.mujiBot_hungry.setImageResource(R.drawable.hunger_state);
+                        isPhysiologic = false;
                     }
                 });
                 SystemClock.sleep(1000);
             }
-        }, 3000);  //3초 뒤에 배고픔 사라짐
+        }, 4000);  //3초 뒤
     }
 
     public void stopTimer()
