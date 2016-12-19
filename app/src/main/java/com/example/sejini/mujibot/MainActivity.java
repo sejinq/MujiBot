@@ -14,20 +14,20 @@ import android.widget.TextView;
 
 import com.example.sejini.mujibot.inner.Emotion;
 import com.example.sejini.mujibot.inner.habituation;
-import com.example.sejini.mujibot.synthetic_nervous_system.behaviorSystem;
+import com.example.sejini.mujibot.synthetic_nervous_system.motivationSystem;
 import com.example.sejini.mujibot.synthetic_nervous_system.perceptionSystem;
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener{
-    boolean is_PICTURE_LIKE = false;
-    boolean is_PICTURE_DISLIKE = false;
-    boolean is_PICTURE_TREATMENT = false;
-    boolean is_EEG_HAPPY = false;
-    boolean is_EEG_SORROW = false;
-    boolean is_EEG_ANGER = false;
+    public static boolean is_PICTURE_LIKE = false;
+    public static boolean is_PICTURE_DISLIKE = false;
+    public static boolean is_PICTURE_TREATMENT = false;
+    public static boolean is_EEG_HAPPY = false;
+    public static boolean is_EEG_SORROW = false;
+    public static boolean is_EEG_ANGER = false;
 
     /*새로운 자극인지 체크하는 변수 nowStimulation에 현재 자극(버튼이름 또는 touchmotion) nowStimulation에 이름(버튼 id로 하자!) 저장
     이벤트 시 이름이랑 비교해서 새로운 자극이면 newStimulation을 true로 바꿔줌
-    mujibo onClick 메서드 참고*/
+    mujibot onClick 메서드 참고*/
     String nowStimulation="";
     public static boolean newStimulation = false;
 
@@ -35,6 +35,11 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public static boolean[] habituationState = new boolean[8];
 
     public static ImageView mujiBot;
+    public static ImageView mujiBot_hungry;
+    public static ImageView mujiBot_sleepy;
+
+    //PhysiologicalNeed physiological = new PhysiologicalNeed();
+    //motivationSystem motivation = new motivationSystem();
     perceptionSystem perception = new perceptionSystem();
     public static int timePet=0;
     public static int timeSwipe=0;
@@ -47,12 +52,28 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     static TextView fearText;
     static TextView sorrowText;
     static TextView surpriseText;
+
+    motivationSystem thread2;
     habituation thread;
     float initialX, initialY;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //physiological.startTimer();
+
+        mujiBot = (ImageView) findViewById(R.id.mujibot);
+        mujiBot_hungry = (ImageView) findViewById(R.id.physiologicalneed_imageview_sleep);
+        mujiBot_sleepy = (ImageView) findViewById(R.id.physiologicalneed_imageview_hunger);
+
+        final Button PICTURE_LIKE = (Button) findViewById(R.id.btn_picture_like);
+        final Button PICTURE_DISLIKE = (Button) findViewById(R.id.btn_picture_dislike);
+        final Button PICTURE_TREATMENT = (Button) findViewById(R.id.btn_picture_treatment);
+        final Button EEG_HAPPY = (Button) findViewById(R.id.btn_eeg_happy);
+        final Button EEG_SORROW = (Button) findViewById(R.id.btn_eeg_sorrow);
+        final Button EEG_ANGER = (Button) findViewById(R.id.btn_eeg_anger);
+
         for(int i=0;i<8;i++){
             habituationState[i] = false;
         }
@@ -65,12 +86,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
          fearText = (TextView)findViewById(R.id.value_fear);
          sorrowText = (TextView)findViewById(R.id.value_sorrow);
          surpriseText = (TextView)findViewById(R.id.value_surprise);
-        mujiBot = (ImageView)findViewById(R.id.mujibot);
-        mujiBot.setOnTouchListener(this);
-        mujiBot.setOnClickListener(new View.OnClickListener() {
+         mujiBot = (ImageView)findViewById(R.id.mujibot);
+         mujiBot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 //thread상태가 끝났는지 체크 > 자극이 있었는지 7초가 지났다
 //                if(timePet==7&&habituationState[6]==false){
@@ -84,15 +103,133 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
             }
         });
-        Button PICTURE_LIKE = (Button)findViewById(R.id.btn_picture_like);
-        Button PICTURE_DISLIKE = (Button)findViewById(R.id.btn_picture_dislike);
-        Button PICTURE_TREATMENT = (Button)findViewById(R.id.btn_picture_treatment);
-        Button EEG_HAPPY = (Button)findViewById(R.id.btn_eeg_happy);
-        Button EEG_SORROW = (Button)findViewById(R.id.btn_eeg_sorrow);
-        Button EEG_ANGER = (Button)findViewById(R.id.btn_eeg_anger);
+
+        PICTURE_LIKE.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN && !is_PICTURE_LIKE) {  //버튼 ON
+                    PICTURE_LIKE.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.black_overlay)); //버튼 색 변화
+                    is_PICTURE_LIKE = true;
+                    thread2 = new motivationSystem(handler, 0);
+                    thread2.setDaemon(true);
+                    thread2.start();
+                    return true;
+                }
+
+                else if (event.getAction() == MotionEvent.ACTION_DOWN && is_PICTURE_LIKE) {  //버튼 OFF
+                    PICTURE_LIKE.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorAccent)); //버튼 색 원상복귀 시키는 법 좀..
+                    is_PICTURE_LIKE = false;
+                    return true;
+                }
 
 
+                return false;
+            }
+        });
+
+        PICTURE_DISLIKE.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN && !is_PICTURE_DISLIKE) {  //버튼 ON
+                    PICTURE_DISLIKE.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.black_overlay)); //버튼 색 변화
+                    is_PICTURE_DISLIKE = true;
+                    thread2 = new motivationSystem(handler, 1);
+                    thread2.setDaemon(true);
+                    thread2.start();
+
+                    return true;
+                }
+                else if (event.getAction() == MotionEvent.ACTION_DOWN && is_PICTURE_DISLIKE) {  //버튼 OFF
+                    PICTURE_DISLIKE.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorAccent)); //버튼 색 원상복귀 시키는 법 좀.
+                    is_PICTURE_DISLIKE = false;
+                    return true;
+                }
+
+                return false;
+            }
+        });
+        PICTURE_TREATMENT.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN && !is_PICTURE_TREATMENT) {  //버튼 ON
+                    PICTURE_TREATMENT.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.black_overlay)); //버튼 색 변화
+                    is_PICTURE_TREATMENT = true;
+                    thread2 = new motivationSystem(handler, 2);
+                    thread2.setDaemon(true);
+                    thread2.start();
+                    return true;
+                }
+                else if (event.getAction() == MotionEvent.ACTION_DOWN && is_PICTURE_TREATMENT) {  //버튼 OFF
+                    PICTURE_TREATMENT.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorAccent)); //버튼 색 원상복귀 시키는 법 좀..
+                    is_PICTURE_TREATMENT = false;
+                    return true;
+                }
+                return false;
+            }
+        });
+        EEG_HAPPY.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN && !is_EEG_HAPPY) {  //버튼 ON
+                    EEG_HAPPY.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.black_overlay)); //버튼 색 변화
+                    is_EEG_HAPPY = true;
+                    thread2 = new motivationSystem(handler, 3);
+                    thread2.setDaemon(true);
+                    thread2.start();
+                    return true;
+                }
+
+                else if (event.getAction() == MotionEvent.ACTION_DOWN && is_EEG_HAPPY) {  //버튼 OFF
+                    EEG_HAPPY.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorAccent)); //버튼 색 원상복귀 시키는 법 좀..
+                    is_EEG_HAPPY = false;
+                    return true;
+                }
+
+                return false;
+
+            }
+        });
+
+        EEG_SORROW.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN && !is_EEG_SORROW) {  //버튼 ON
+                    EEG_SORROW.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.black_overlay)); //버튼 색 변화
+                    is_EEG_SORROW = true;
+                    thread2 = new motivationSystem(handler, 4);
+                    thread2.setDaemon(true);
+                    thread2.start();
+                    return true;
+                }
+
+                else if (event.getAction() == MotionEvent.ACTION_DOWN && is_EEG_SORROW) {  //버튼 OFF
+                    EEG_SORROW.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorAccent)); //버튼 색 원상복귀 시키는 법 좀..
+                    is_EEG_SORROW = false;
+                    return true;
+                }
+
+
+                return false;
+            }
+        });
+
+        EEG_ANGER.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN && !is_EEG_ANGER) {  //버튼 ON
+                    EEG_ANGER.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.black_overlay)); //버튼 색 변화
+                    is_EEG_ANGER = true;
+                    thread2 = new motivationSystem(handler, 5);
+                    thread2.setDaemon(true);
+                    thread2.start();
+                    return true;
+                }
+
+                else if (event.getAction() == MotionEvent.ACTION_DOWN && is_EEG_ANGER) {  //버튼 OFF
+                    EEG_ANGER.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorAccent)); //버튼 색 원상복귀 시키는 법 좀..
+                    is_EEG_ANGER = false;
+                    return true;
+                }
+
+                return false;
+            }
+        });
     }
+
     public static void showInnerState(){
         joyText.setText(String.valueOf(Emotion.JOY));
         interestText.setText(String.valueOf(Emotion.INTEREST));
