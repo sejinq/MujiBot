@@ -10,7 +10,7 @@ import com.example.sejini.mujibot.inner.Emotion;
 public class perceptionSystem {
 
     //( JOY/BOREDOM/INTEREST/SURPRISE/SORROW/CALM/FEAR/DISGUST/ANGER)
-    public void showPictureLike(){
+    public static void showPictureLike(){
         Emotion.JOY += 0.5;
         Emotion.INTEREST += 0.5;
         Emotion.BOREDOM -= 0.3;
@@ -23,7 +23,7 @@ public class perceptionSystem {
 
     }
 
-    public void showPictureDislike(){
+    public static void showPictureDislike(){
         Emotion.JOY -= 0.3;
         Emotion.INTEREST -= 0.3;
         Emotion.BOREDOM += 0.3;
@@ -36,7 +36,7 @@ public class perceptionSystem {
 
     }
 
-    public void showPictureTreatment(){
+    public static void showPictureTreatment(){
         Emotion.JOY += 0.1;
         Emotion.INTEREST += 0.1;
         Emotion.BOREDOM -= 0.1;
@@ -48,7 +48,7 @@ public class perceptionSystem {
         Emotion.ANGER -= 0.1;
 
     }
-    public void checkEEGhappy(){
+    public static void checkEEGhappy(){
         Emotion.JOY += 0.5;
         Emotion.INTEREST += 0.1;
         Emotion.BOREDOM -= 0.1;
@@ -61,7 +61,7 @@ public class perceptionSystem {
 
     }
 
-    public void checkEEGsorrow(){
+    public static void checkEEGsorrow(){
         Emotion.JOY -= 0.5;
         Emotion.INTEREST += 0.1;
         Emotion.BOREDOM -= 0.1;
@@ -74,7 +74,7 @@ public class perceptionSystem {
 
     }
 
-    public void checkEEGanger(){
+    public static void checkEEGanger(){
         Emotion.JOY -= 0.4;
         Emotion.INTEREST += 0.1;
         Emotion.BOREDOM -= 0.1;
@@ -87,7 +87,7 @@ public class perceptionSystem {
 
     }
 
-    public void hitMujibot(){
+    public static void hitMujibot(){
         Emotion.JOY -= 0.2;
         Emotion.INTEREST += 0.1;
         Emotion.BOREDOM -= 0.1;
@@ -100,7 +100,7 @@ public class perceptionSystem {
 
     }
 
-    public void petMujibot(){
+    public static void petMujibot(){
         Emotion.JOY += 2;
         Emotion.INTEREST += 5;
         Emotion.BOREDOM -= 5;
