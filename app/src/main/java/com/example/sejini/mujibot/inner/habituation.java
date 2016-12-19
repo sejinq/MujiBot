@@ -21,6 +21,7 @@ public class habituation extends Thread{
     @Override
     public void run() {
         while(true){
+            //항상성이 다 완료됬을 때 또는 새로운 자극이 들어올 때 종료
             if(!habituationEffect()){
                 if(state == 6){
                     MainActivity.timePet=0;
@@ -45,7 +46,7 @@ public class habituation extends Thread{
         } // end while
     } // end run()
 
-
+//항상성 함수
     public boolean habituationEffect() {
 
         boolean newStimulation = MainActivity.newStimulation;

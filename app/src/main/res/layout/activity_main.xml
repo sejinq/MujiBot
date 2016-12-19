@@ -38,9 +38,10 @@
                 android:layout_marginTop="10dp"
                 >
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/ic_launcher"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/sleepy_state"
                     android:id="@+id/physiologicalneed_imageview_sleep"
                     />
                 <TextView
@@ -50,9 +51,10 @@
                     android:layout_below="@+id/physiologicalneed_imageview_sleep"
                     android:layout_centerHorizontal="true"/>
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@mipmap/ic_launcher"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/hunger_state"
                     android:id="@+id/physiologicalneed_imageview_hunger"
                     android:layout_toRightOf="@+id/physiologicalneed_imageview_sleep"
                     />
