@@ -88,6 +88,7 @@ public class perceptionSystem {
     }
 
     public static void hitMujibot(){
+
         Emotion.JOY -= 2;
         Emotion.INTEREST += 1;
         Emotion.BOREDOM -= 1;

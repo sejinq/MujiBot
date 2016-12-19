@@ -295,17 +295,18 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     private void motionPerception(boolean state) {
         String DEBUG_TAG = "MOTION";
        if(state){
-           thread.interrupt();
+           //thread.interrupt();
            Log.d(DEBUG_TAG, "swipe");
-           if (timeSwipe < 7) {
+         if (timeSwipe < 7) {
                perception.hitMujibot();
                timeSwipe++;
+               newStimulation = true;
                showInnerState();
            } else if (timeSwipe >= 7 && habituationState[7] == false) {
                //touch의 habituation thread상태를 true로
-               newStimulation = false;
                habituationState[7] = true;
                //habituationstate 배열의 index를 넘겨줌
+             newStimulation = false;
                thread = new habituation(handler, 7);
                thread.setDaemon(true);
                thread.start();
@@ -315,6 +316,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
            if (timePet < 7) {
                perception.petMujibot();
                timePet++;
+               newStimulation = true;
                showInnerState();
            } else if (timePet >= 7 && habituationState[6] == false) {
                //touch의 habituation thread상태를 true로
