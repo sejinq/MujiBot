@@ -12,8 +12,11 @@
         <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowBackground">@null</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/text</item>
-        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+         <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+
+
         <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
     </style>
 

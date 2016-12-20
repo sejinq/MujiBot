@@ -91,6 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="내부상태"
+                    android:layout_marginBottom="10dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:id="@+id/textView3" />
 
@@ -103,17 +104,18 @@
 
                     <TextView
                         android:layout_width="70dp"
-                        android:layout_height="25dp"
+                        android:layout_height="wrap_content"
                         android:text="JOY" />
                     <TextView
                         android:layout_width="90dp"
                         android:layout_height="25dp"
-                        android:text="value_joy"
+                        android:text="50"
+                        android:layout_marginLeft="20dp"
                         android:id="@+id/value_joy"/>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="140dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:orientation="horizontal"
                     android:layout_alignParentBottom="true"
@@ -124,9 +126,10 @@
                         android:layout_height="25dp"
                         android:text="INTEREST" />
                     <TextView
-                        android:layout_width="90dp"
+                        android:layout_width="match_parent"
                         android:layout_height="25dp"
-                        android:text="value_interest"
+                        android:layout_marginLeft="20dp"
+                        android:text="50"
                         android:id="@+id/value_interest"/>
                 </LinearLayout>
                 <LinearLayout
@@ -143,7 +146,8 @@
                     <TextView
                         android:layout_width="90dp"
                         android:layout_height="25dp"
-                        android:text="value_boredom"
+                        android:text="50"
+                        android:layout_marginLeft="20dp"
                         android:id="@+id/value_boredom"/>
                 </LinearLayout>
 
@@ -161,7 +165,8 @@
                     <TextView
                         android:layout_width="90dp"
                         android:layout_height="25dp"
-                        android:text="value_surprise"
+                        android:text="50"
+                        android:layout_marginLeft="20dp"
                         android:id="@+id/value_surprise"/>
                 </LinearLayout>
 
@@ -179,7 +184,8 @@
                     <TextView
                         android:layout_width="90dp"
                         android:layout_height="25dp"
-                        android:text="value_calm"
+                        android:text="50"
+                        android:layout_marginLeft="20dp"
                         android:id="@+id/value_calm"/>
                 </LinearLayout>
 
@@ -197,7 +203,8 @@
                     <TextView
                         android:layout_width="90dp"
                         android:layout_height="25dp"
-                        android:text="value_sorrow"
+                        android:text="50"
+                        android:layout_marginLeft="20dp"
                         android:id="@+id/value_sorrow"/>
                 </LinearLayout>
 
@@ -215,7 +222,8 @@
                     <TextView
                         android:layout_width="90dp"
                         android:layout_height="25dp"
-                        android:text="value_fear"
+                        android:text="50"
+                        android:layout_marginLeft="20dp"
                         android:id="@+id/value_fear"/>
                 </LinearLayout>
 
@@ -233,7 +241,8 @@
                     <TextView
                         android:layout_width="90dp"
                         android:layout_height="25dp"
-                        android:text="value_disgust"
+                        android:text="50"
+                        android:layout_marginLeft="20dp"
                         android:id="@+id/value_disgust"/>
                 </LinearLayout>
 
@@ -252,7 +261,8 @@
                     <TextView
                         android:layout_width="90dp"
                         android:layout_height="25dp"
-                        android:text="value_anger"
+                        android:text="50"
+                        android:layout_marginLeft="20dp"
                         android:id="@+id/value_anger"/>
                 </LinearLayout>
         </LinearLayout>
@@ -261,70 +271,83 @@
 
 
         </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:id="@+id/linearLayout1"
+        >
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:id="@+id/linearLayout1"
-            >
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
 
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:textColor="@color/white"
+                android:text="좋사진"
+                android:textSize="18sp"
+                android:id="@+id/btn_picture_like"/>
 
-                <Button
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:text="좋사진"
-                    android:textSize="18sp"
-                    android:id="@+id/btn_picture_like"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="싫사진"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:id="@+id/btn_picture_dislike"/>
 
-                <Button
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:text="싫사진"
-                    android:textSize="18sp"
-                    android:id="@+id/btn_picture_dislike"/>
-
-                <Button
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:text="차분사진"
-                    android:textSize="18sp"
-                    android:id="@+id/btn_picture_treatment"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:text="행복표정"
-                    android:textSize="18sp"
-                    android:id="@+id/btn_eeg_happy"/>
-
-                <Button
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:text="슬픈표정"
-                    android:textSize="18sp"
-                    android:id="@+id/btn_eeg_sorrow"/>
-
-                <Button
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:text="화난표정"
-                    android:textSize="18sp"
-                    android:id="@+id/btn_eeg_anger"/>
-
-            </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:text="차분사진"
+                android:textSize="18sp"
+                android:id="@+id/btn_picture_treatment"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="행복표정"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:id="@+id/btn_eeg_happy"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="슬픈표정"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:id="@+id/btn_eeg_sorrow"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="화난표정"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:id="@+id/btn_eeg_anger"/>
+
+        </LinearLayout>
     </LinearLayout>
+
+</LinearLayout>
 
