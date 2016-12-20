@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
                 else if (event.getAction() == MotionEvent.ACTION_DOWN && is_PICTURE_LIKE) {  //버튼 OFF
                     //PICTURE_LIKE.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorAccent)); //버튼 색 원상복귀 시키는 법 좀..
-                    PICTURE_LIKE.setTextColor(0xFF000000);
+                    PICTURE_LIKE.setTextColor(0xFFFFFFFF);
                     is_PICTURE_LIKE = false;
                     return true;
                 }
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 }
                 else if (event.getAction() == MotionEvent.ACTION_DOWN && is_PICTURE_DISLIKE) {  //버튼 OFF
                     //PICTURE_DISLIKE.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorAccent)); //버튼 색 원상복귀 시키는 법 좀.
-                    PICTURE_DISLIKE.setTextColor(0xFF000000);
+                    PICTURE_DISLIKE.setTextColor(0xFFFFFFFF);
                     is_PICTURE_DISLIKE = false;
                     return true;
                 }
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 }
                 else if (event.getAction() == MotionEvent.ACTION_DOWN && is_PICTURE_TREATMENT) {  //버튼 OFF
                     //PICTURE_TREATMENT.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorAccent)); //버튼 색 원상복귀 시키는 법 좀..
-                    PICTURE_TREATMENT.setTextColor(0xFF000000);
+                    PICTURE_TREATMENT.setTextColor(0xFFFFFFFF);
                     is_PICTURE_TREATMENT = false;
                     return true;
                 }
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
                 else if (event.getAction() == MotionEvent.ACTION_DOWN && is_EEG_HAPPY) {  //버튼 OFF
                     //EEG_HAPPY.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorAccent)); //버튼 색 원상복귀 시키는 법 좀..
-                    EEG_HAPPY.setTextColor(0xFF000000);
+                    EEG_HAPPY.setTextColor(0xFFFFFFFF);
                     is_EEG_HAPPY = false;
                     return true;
                 }
@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
                 else if (event.getAction() == MotionEvent.ACTION_DOWN && is_EEG_SORROW) {  //버튼 OFF
                     //EEG_SORROW.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorAccent)); //버튼 색 원상복귀 시키는 법 좀..
-                    EEG_SORROW.setTextColor(0xFF000000);
+                    EEG_SORROW.setTextColor(0xFFFFFFFF);
                     is_EEG_SORROW = false;
                     return true;
                 }
@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
                 else if (event.getAction() == MotionEvent.ACTION_DOWN && is_EEG_ANGER) {  //버튼 OFF
                     //EEG_ANGER.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorAccent)); //버튼 색 원상복귀 시키는 법 좀..
-                    EEG_ANGER.setTextColor(0xFF000000);
+                    EEG_ANGER.setTextColor(0xFFFFFFFF);
                     is_EEG_ANGER = false;
                     return true;
                 }
