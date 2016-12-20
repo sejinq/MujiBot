@@ -38,8 +38,8 @@
                 android:layout_marginTop="10dp"
                 >
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/sleepy_state"
                     android:id="@+id/physiologicalneed_imageview_sleep"
@@ -48,10 +48,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="졸림"
+                    android:layout_marginLeft="8dp"
                     android:layout_below="@+id/physiologicalneed_imageview_sleep" />
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/hunger_state"
                     android:id="@+id/physiologicalneed_imageview_hunger"
@@ -62,6 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="배고픔"
+                    android:layout_marginLeft="63dp"
                     android:layout_below="@+id/physiologicalneed_imageview_hunger"
                     />
 
@@ -76,6 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginRight="-30dp"
             >
 
             <LinearLayout
@@ -276,18 +279,21 @@
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:text="좋사진"
+                    android:textSize="18sp"
                     android:id="@+id/btn_picture_like"/>
 
                 <Button
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:text="싫사진"
+                    android:textSize="18sp"
                     android:id="@+id/btn_picture_dislike"/>
 
                 <Button
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:text="차분사진"
+                    android:textSize="18sp"
                     android:id="@+id/btn_picture_treatment"/>
             </LinearLayout>
 
@@ -300,18 +306,21 @@
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:text="행복표정"
+                    android:textSize="18sp"
                     android:id="@+id/btn_eeg_happy"/>
 
                 <Button
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:text="슬픈표정"
+                    android:textSize="18sp"
                     android:id="@+id/btn_eeg_sorrow"/>
 
                 <Button
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:text="화난표정"
+                    android:textSize="18sp"
                     android:id="@+id/btn_eeg_anger"/>
 
             </LinearLayout>
