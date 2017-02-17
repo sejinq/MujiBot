@@ -5,6 +5,11 @@ MujiBot
 
 모바일 환경의 소셜 로봇을 이용한 조현병 환자의 감정 인지치료 시스템 설계 및 구현
 
+##실행영상
+
+https://www.youtube.com/watch?v=nCehhk19qo4&t=36s
+
+
 소셜로봇 mujibot입니다
 
     조현병의 사회 인지 장애가 크게 나타나는 정신 질환이다. 
